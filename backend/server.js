@@ -33,6 +33,22 @@ app.get("/", (req, res) => {
 });
 
 
+app.post("/student", (req, res) => {
+    const sql = "INSERT INTO student (`Name` , `Email`) VALUES (?)"
+    const values = [
+        req.body.name,
+        req.body.email
+    ]
+
+    db.query(sql, [values], (err, result) => {
+        if(err) return res.json(err);
+        return res.json(result);
+    })
+})
+
+
+
+
 app.listen(4000, () => {
     console.log("Listening at the port {4000}");
 });
